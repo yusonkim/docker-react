@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  # - echo -e "machine github.com\n  login $GITHUB_TOKEN" > ~/.netrc
+  # - git lfs pull
+  - docker build -t yusungkim/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run yusungkim/docker-react npm run test -- --coverage
